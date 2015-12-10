@@ -1,9 +1,11 @@
-package com.example.danielholst.logincomponent;
+package com.example.danielholst.logincomponent.LoginForm;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
+
+import com.example.danielholst.logincomponent.R;
 
 /**
  * Created by danielholst on 15-12-08.

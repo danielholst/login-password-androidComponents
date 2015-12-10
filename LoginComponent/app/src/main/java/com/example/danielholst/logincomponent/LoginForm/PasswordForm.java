@@ -1,9 +1,12 @@
-package com.example.danielholst.logincomponent;
+package com.example.danielholst.logincomponent.LoginForm;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.danielholst.logincomponent.R;
 
 import java.util.Arrays;
 

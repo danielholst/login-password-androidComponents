@@ -1,4 +1,4 @@
-package com.example.danielholst.logincomponent;
+package com.example.danielholst.logincomponent.LoginForm;
 
 import android.content.Context;
 import android.widget.Button;
@@ -6,6 +6,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.danielholst.logincomponent.R;
 
 
 /**
@@ -153,7 +155,7 @@ public class LoginForm extends RelativeLayout {
 
         this.addView(firstNameField, firstNameFieldParams);
 
-        int lastId = lastNameText.getId();
+        int lastId = emailText.getId();
 
         //if password field is desired
         if(includePassword) {
@@ -162,7 +164,7 @@ public class LoginForm extends RelativeLayout {
             RelativeLayout.LayoutParams passwordFormParams =
                     new RelativeLayout.LayoutParams(
                             RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.MATCH_PARENT);
+                            200);
 
             passwordFormParams.addRule(RelativeLayout.BELOW, emailText.getId());
 
@@ -177,11 +179,11 @@ public class LoginForm extends RelativeLayout {
 
         RelativeLayout.LayoutParams checkboxParams =
                 new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT);
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT);
 
         checkboxParams.addRule(RelativeLayout.BELOW, lastId);
-        checkboxParams.addRule(RelativeLayout.ALIGN_LEFT);
+        //checkboxParams.addRule(RelativeLayout.ALIGN_LEFT);
         checkboxParams.setMargins(10, 10, 0, 0);
 
         this.addView(checkBox, checkboxParams);
@@ -206,19 +208,20 @@ public class LoginForm extends RelativeLayout {
         Button button = new Button(getContext());
         button.setText("Sign up");
         button.setTextSize(30);
+        button.setBackgroundColor(getResources().getColor(R.color.colorButton));
 
         //set clickable when all fields are entered
         button.setClickable(false);
 
         RelativeLayout.LayoutParams buttonParams =
                 new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT);
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT);
 
         buttonParams.addRule(RelativeLayout.BELOW, checkBox.getId());
         buttonParams.addRule(RelativeLayout.ALIGN_LEFT, checkBox.getId());
         buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, emailTextField.getId());
-        buttonParams.setMargins(10, 10, 0, 0);
+        buttonParams.setMargins(0, 20, 0, 0);
 
         this.addView(button, buttonParams);
 
