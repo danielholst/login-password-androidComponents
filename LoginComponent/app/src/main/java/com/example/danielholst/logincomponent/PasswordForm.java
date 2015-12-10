@@ -5,10 +5,13 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 /**
  * Created by danielholst on 15-12-08.
  */
 public class PasswordForm extends RelativeLayout {
+
     public PasswordForm(Context context) {
         super(context);
 
@@ -56,8 +59,8 @@ public class PasswordForm extends RelativeLayout {
                         RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         passwordStrengthMeterParams.addRule(RelativeLayout.RIGHT_OF, passwordField.getId());
-        passwordStrengthMeterParams.addRule(RelativeLayout.ALIGN_TOP, passwordText.getId());
-        passwordStrengthMeterParams.setMargins(10, 0, 0, 10);
+        //passwordStrengthMeterParams.addRule(RelativeLayout.ALIGN_TOP, passwordText.getId());
+        passwordStrengthMeterParams.setMargins(10, 30, 0, 10);
 
         this.addView(passwordStrengthMeter, passwordStrengthMeterParams);
 
@@ -67,6 +70,30 @@ public class PasswordForm extends RelativeLayout {
     //algorithm to decide the strength of the password
     public int getStrengthOfPassword(String password) {
 
-        return 0;
+        Boolean[] checkedConditions = new Boolean[6];
+        Arrays.fill(checkedConditions, false);
+
+        //if more then 6 letters in password
+        if(password.length() >= 6)
+            checkedConditions[0] = true;
+
+        //if more then 12 letters in password
+        if(password.length() >= 12)
+            checkedConditions[1] = true;
+
+        //if a number in password
+
+        //if a capital letter in password
+
+        //if special sign in password
+
+        //check how many conditions is true
+        int counter = 0;
+        for(int i = 0; i < checkedConditions.length; i++) {
+            if(checkedConditions[i] == true)
+                counter++;
+        }
+
+        return counter;
     }
 }

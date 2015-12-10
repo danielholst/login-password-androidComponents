@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="colorTextField">#c7efc5</color>
     <color name="colorStrengthMeterBackground">#566056</color>
     <color name="colorCircleRedLit">#fa1313</color>
     <color name="colorCircleYellowLit">#eff20f</color>
-    <color name="colorCirleGreenLit">#11bf11</color>
+    <color name="colorCircleGreenLit">#11bf11</color>
     <color name="colorCircleRed">#641212</color>
     <color name="colorCircleYellow">#858703</color>
-    <color name="colorCirleGreen">#044104</color>
+    <color name="colorCircleGreen">#044104</color>
+    <color name="colorButton">#70ac70</color>
 </resources>

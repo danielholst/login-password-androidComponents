@@ -1,7 +1,8 @@
 package com.example.danielholst.logincomponent;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,13 +12,18 @@ import android.widget.TextView;
  * Created by danielholst on 15-12-08.
  */
 public class LoginForm extends RelativeLayout {
-    public LoginForm(Context context) {
-        super(context);
 
-        createTextFields();
+    private boolean includePassword;
+
+    public LoginForm(Context context, boolean incPass) {
+        super(context);
+        includePassword = incPass;
+
+        createForm();
     }
 
-    private void createTextFields() {
+    //create all fields in the login form
+    private void createForm() {
 
         //sign up text
         TextView signUpText = new TextView(getContext());
@@ -147,23 +153,74 @@ public class LoginForm extends RelativeLayout {
 
         this.addView(firstNameField, firstNameFieldParams);
 
-        createPasswordForm(emailText.getId());
+        int lastId = lastNameText.getId();
 
+        //if password field is desired
+        if(includePassword) {
+            PasswordForm passwordForm = new PasswordForm(getContext());
+            passwordForm.setId(11);
+            RelativeLayout.LayoutParams passwordFormParams =
+                    new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.MATCH_PARENT);
 
-    }
+            passwordFormParams.addRule(RelativeLayout.BELOW, emailText.getId());
 
-    private void createPasswordForm(int id) {
+            this.addView(passwordForm, passwordFormParams);
 
-        PasswordForm passwordForm = new PasswordForm(getContext());
-        RelativeLayout.LayoutParams passwordFormParams =
+            lastId = passwordForm.getId();
+        }
+
+        //checkbox
+        CheckBox checkBox = new CheckBox(getContext());
+        checkBox.setId(12);
+
+        RelativeLayout.LayoutParams checkboxParams =
                 new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT,
                         RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        passwordFormParams.addRule(RelativeLayout.BELOW, id);
+        checkboxParams.addRule(RelativeLayout.BELOW, lastId);
+        checkboxParams.addRule(RelativeLayout.ALIGN_LEFT);
+        checkboxParams.setMargins(10, 10, 0, 0);
 
-        this.addView(passwordForm, passwordFormParams);
+        this.addView(checkBox, checkboxParams);
+
+        //checkbox text
+        TextView checkboxText = new TextView(getContext());
+        checkboxText.setText("I approve the terms of use");
+        checkboxText.setTextSize(20);
+
+        RelativeLayout.LayoutParams checkboxTextParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT);
+
+        checkboxTextParams.addRule(RelativeLayout.BELOW, lastId);
+        checkboxTextParams.addRule(RelativeLayout.RIGHT_OF, checkBox.getId());
+        checkboxTextParams.setMargins(10, 10, 0, 0);
+
+        this.addView(checkboxText, checkboxTextParams);
+
+        //Sign up button
+        Button button = new Button(getContext());
+        button.setText("Sign up");
+        button.setTextSize(30);
+
+        //set clickable when all fields are entered
+        button.setClickable(false);
+
+        RelativeLayout.LayoutParams buttonParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT);
+
+        buttonParams.addRule(RelativeLayout.BELOW, checkBox.getId());
+        buttonParams.addRule(RelativeLayout.ALIGN_LEFT, checkBox.getId());
+        buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, emailTextField.getId());
+        buttonParams.setMargins(10, 10, 0, 0);
+
+        this.addView(button, buttonParams);
 
     }
-
 }
