@@ -21,7 +21,7 @@ public class PasswordForm extends RelativeLayout {
                 new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT);
-        passwordFormParams.setMargins(50, 40, 40, 0);
+        passwordFormParams.setMargins(60, 40, 40, 0);
 
         this.addView(passwordText, passwordFormParams);
 
@@ -43,6 +43,11 @@ public class PasswordForm extends RelativeLayout {
 
         this.addView(passwordField, passwordFieldParams);
 
+        //TODO create on textChangeListener for passwordField text and pass to getStrengthOfPassword
+
+        //int strength = getStrengthOfPassword(passwordField.getText().toString());
+
+        //second argument should be 0, 1 or 2 depending on the strength of the password
         PasswordStrengthMeter passwordStrengthMeter = new PasswordStrengthMeter(getContext(), 0);
         passwordStrengthMeter.setId(10);
         RelativeLayout.LayoutParams passwordStrengthMeterParams =
@@ -57,5 +62,11 @@ public class PasswordForm extends RelativeLayout {
         this.addView(passwordStrengthMeter, passwordStrengthMeterParams);
 
 
+    }
+
+    //algorithm to decide the strength of the password
+    public int getStrengthOfPassword(String password) {
+
+        return 0;
     }
 }

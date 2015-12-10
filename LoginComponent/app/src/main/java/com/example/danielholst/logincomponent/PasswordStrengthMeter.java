@@ -21,10 +21,44 @@ public class PasswordStrengthMeter extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        Paint myPaint = new Paint();
-        myPaint.setColor(getResources().getColor(R.color.colorStrengthMeterBackground));
-        myPaint.setStrokeWidth(10);
-        canvas.drawRect(0, 0, 70, 130, myPaint);
+        int color1 = 1, color2 = 1, color3 = 1;
+        Paint rect = new Paint();
+        rect.setColor(getResources().getColor(R.color.colorStrengthMeterBackground));
+        rect.setStrokeWidth(10);
+        canvas.drawRect(0, 0, 70, 150, rect);
+
+        if(passwordStrength == 0) {
+            color1 = getResources().getColor(R.color.colorCircleRedLit);
+            color2 = getResources().getColor(R.color.colorCircleYellow);
+            color3 = getResources().getColor(R.color.colorCirleGreen);
+        }
+
+        if(passwordStrength == 1) {
+            color1 = getResources().getColor(R.color.colorCircleRed);
+            color2 = getResources().getColor(R.color.colorCircleYellowLit);
+            color3 = getResources().getColor(R.color.colorCirleGreen);
+        }
+
+        if(passwordStrength == 2) {
+            color1 = getResources().getColor(R.color.colorCircleRed);
+            color2 = getResources().getColor(R.color.colorCircleYellow);
+            color3 = getResources().getColor(R.color.colorCirleGreenLit);
+        }
+
+        Paint circle = new Paint();
+        circle.setColor(color1);
+        circle.setStrokeWidth(10);
+        canvas.drawCircle(35, 35, 15, circle);
+
+        Paint circle2 = new Paint();
+        circle2.setColor(color2);
+        circle.setStrokeWidth(10);
+        canvas.drawCircle(35, 75, 15, circle2);
+
+        Paint circle3 = new Paint();
+        circle3.setColor(color3);
+        circle3.setStrokeWidth(10);
+        canvas.drawCircle(35, 115, 15, circle3);
 /*
         //worst case
         if(passwordStrength == 0) {
