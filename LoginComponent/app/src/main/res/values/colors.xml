@@ -17,5 +17,7 @@
     <color name="colorCircleRed">#641212</color>
     <color name="colorCircleYellow">#858703</color>
     <color name="colorCircleGreen">#044104</color>
+
     <color name="colorButton">#70ac70</color>
+    <color name="colorButtonClickable">#55a755</color>
 </resources>

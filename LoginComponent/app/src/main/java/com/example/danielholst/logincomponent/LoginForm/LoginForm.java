@@ -1,13 +1,19 @@
 package com.example.danielholst.logincomponent.LoginForm;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.danielholst.logincomponent.R;
+
+import java.util.Arrays;
 
 
 /**
@@ -16,16 +22,26 @@ import com.example.danielholst.logincomponent.R;
 public class LoginForm extends RelativeLayout {
 
     private boolean includePassword;
+    private int fields;
 
     public LoginForm(Context context, boolean incPass) {
         super(context);
         includePassword = incPass;
+
+        if(incPass)
+            fields = 5;
+        else
+            fields = 4;
 
         createForm();
     }
 
     //create all fields in the login form
     private void createForm() {
+
+        //check to see that all fields are entered before sign up button can be presses
+        final boolean[] formCheckedFields = new boolean[fields];
+        Arrays.fill(formCheckedFields, false);
 
         //sign up text
         TextView signUpText = new TextView(getContext());
@@ -88,7 +104,7 @@ public class LoginForm extends RelativeLayout {
         emailParams.setMargins(10, 10, 10, 10);
 
         //email address text field
-        EditText emailTextField = new EditText(getContext());
+        final EditText emailTextField = new EditText(getContext());
         emailTextField.setText("");
         emailTextField.setId(5);
         emailTextField.setWidth(200);
@@ -105,7 +121,7 @@ public class LoginForm extends RelativeLayout {
         emailFieldParams.addRule(RelativeLayout.RIGHT_OF, emailText.getId());
 
         //last name text field
-        EditText lastNameField = new EditText(getContext());
+        final EditText lastNameField = new EditText(getContext());
         lastNameField.setText("");
         lastNameField.setId(6);
         lastNameField.setWidth(200);
@@ -122,7 +138,7 @@ public class LoginForm extends RelativeLayout {
         lastNameFieldParams.addRule(RelativeLayout.RIGHT_OF, lastNameText.getId());
 
         //first name text field
-        EditText firstNameField = new EditText(getContext());
+        final EditText firstNameField = new EditText(getContext());
         firstNameField.setText("");
         firstNameField.setId(7);
         firstNameField.setWidth(200);
@@ -140,9 +156,10 @@ public class LoginForm extends RelativeLayout {
 
         int lastId = emailText.getId();
 
+        PasswordForm passwordForm = null;
         //if password field is desired
         if(includePassword) {
-            PasswordForm passwordForm = new PasswordForm(getContext());
+            passwordForm = new PasswordForm(getContext());
             passwordForm.setId(11);
             RelativeLayout.LayoutParams passwordFormParams =
                     new RelativeLayout.LayoutParams(
@@ -183,7 +200,7 @@ public class LoginForm extends RelativeLayout {
         checkboxTextParams.setMargins(10, 10, 0, 0);
 
         //Sign up button
-        Button button = new Button(getContext());
+        final Button button = new Button(getContext());
         button.setText("Sign up");
         button.setTextSize(30);
         button.setBackgroundColor(getResources().getColor(R.color.colorButton));
@@ -213,5 +230,137 @@ public class LoginForm extends RelativeLayout {
         this.addView(button, buttonParams);
         this.addView(firstNameField, firstNameFieldParams);
 
+        firstNameField.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 1)
+                    formCheckedFields[0] = true;
+                else
+                    formCheckedFields[0] = false;
+
+                if (validateCheckedFields(formCheckedFields)) {
+                    button.setClickable(true);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
+                }
+                else {
+                    button.setClickable(false);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButton));
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+            }
+        });
+
+        lastNameField.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                if(s.length() > 1)
+                    formCheckedFields[1] = true;
+                else
+                    formCheckedFields[1] = false;
+
+                if(validateCheckedFields(formCheckedFields)) {
+                    button.setClickable(true);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
+                }
+                else {
+                    button.setClickable(false);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButton));
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+            }
+        });
+
+        emailTextField.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                if(s.length() > 1)
+                    formCheckedFields[2] = true;
+                else
+                    formCheckedFields[2] = false;
+
+                if(validateCheckedFields(formCheckedFields)) {
+                    button.setClickable(true);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
+                }
+                else {
+                    button.setClickable(false);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButton));
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+            }
+        });
+
+        final PasswordForm finalPasswordForm = passwordForm;
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    formCheckedFields[3] = true;
+
+                    if(includePassword && finalPasswordForm.getStrength() > 4)
+                        formCheckedFields[4] = true;
+                }
+                if(!isChecked) {
+                    formCheckedFields[3] = false;
+                }
+                if(validateCheckedFields(formCheckedFields)) {
+                    button.setClickable(true);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
+                }
+                else {
+                    button.setClickable(false);
+                    button.setBackgroundColor(getResources().getColor(R.color.colorButton));
+                }
+            }
+        });
+
+        //click sign in button
+        button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.setBackgroundColor(getResources().getColor(R.color.colorCircleGreenLit));
+                System.out.println (  "New user! \nName: " + firstNameField.getText().toString() + " " + lastNameField.getText().toString()
+                                    + "\nEmail: " + emailTextField.getText().toString()
+                                    + "\nPassword: " + finalPasswordForm.getPassword());
+
+            }
+        });
+    }
+
+    public boolean validateCheckedFields(boolean[] checked) {
+
+        int counter = 0;
+
+        for(int i = 0; i < checked.length; i++) {
+            if(checked[i] == true)
+                counter++;
+        }
+
+        if(counter == 5)
+            return true;
+        else
+            return false;
     }
 }

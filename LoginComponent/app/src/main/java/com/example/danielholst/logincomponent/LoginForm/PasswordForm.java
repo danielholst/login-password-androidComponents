@@ -21,6 +21,7 @@ import java.util.logging.Handler;
 public class PasswordForm extends RelativeLayout {
 
     private int strength = 0;
+    private String password;
     public PasswordForm(Context context) {
         super(context);
 
@@ -60,11 +61,10 @@ public class PasswordForm extends RelativeLayout {
 
         this.addView(passwordField, passwordFieldParams);
 
-        //TODO create on textChangeListener for passwordField text and pass to getStrengthOfPassword
-
         passwordField.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
+                password = s.toString();
             }
 
             public void beforeTextChanged(CharSequence s, int start,
@@ -78,58 +78,6 @@ public class PasswordForm extends RelativeLayout {
             }
         });
 
-        /*
-
-                passwordField.setOnFocusChangeListener(new View().OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    // Do your thing here
-                }
-            }
-        });
-
-
-        passwordField.addTextChangedListener(new TextWatcher()
-
-        {
-            Handler handler = new Handler();
-            Runnable delayedAction = null;
-
-            @Override
-            public void onTextChanged( CharSequence s, int start, int before, int count)
-            {}
-
-            @Override
-            public void beforeTextChanged( CharSequence s, int start, int count, int after)
-            {}
-
-            @Override
-            public void afterTextChanged( final Editable s)
-            {
-                //cancel the previous search if any
-                if (delayedAction != null)
-                {
-                    handler.removeCallbacks(delayedAction);
-                }
-
-                //define a new search
-                delayedAction = new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        //start your search
-                        startSearch(s.toString());
-                    }
-                };
-
-                //delay this new search by one second
-                handler.postDelayed(delayedAction, 1000);
-            }
-        });
-        */
-
         passwordStrengthMeter.setId(10);
         RelativeLayout.LayoutParams passwordStrengthMeterParams =
                 new RelativeLayout.LayoutParams(
@@ -140,8 +88,6 @@ public class PasswordForm extends RelativeLayout {
         passwordStrengthMeterParams.setMargins(10, 30, 0, 10);
 
         this.addView(passwordStrengthMeter, passwordStrengthMeterParams);
-
-
     }
 
     //algorithm to decide the strength of the password
@@ -150,8 +96,6 @@ public class PasswordForm extends RelativeLayout {
         Boolean[] checkedConditions = new Boolean[6];
         Arrays.fill(checkedConditions, false);
 
-        String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.";
-
         //if more then 6 letters in password
         if(password.length() >= 6)
             checkedConditions[0] = true;
@@ -159,7 +103,6 @@ public class PasswordForm extends RelativeLayout {
         //if more then 12 letters in password
         if(password.length() >= 12)
             checkedConditions[1] = true;
-
 
         for (int i = 0; i < password.length(); i++) {
             char c = password.charAt(i);
@@ -179,7 +122,6 @@ public class PasswordForm extends RelativeLayout {
             //if special sign in password
             else
                 checkedConditions[5] = true;
-
         }
 
         //check how many conditions is true
@@ -189,8 +131,14 @@ public class PasswordForm extends RelativeLayout {
                 counter++;
         }
 
-        //System.out.println(counter);
-
         return counter;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
