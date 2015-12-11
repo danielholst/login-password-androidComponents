@@ -42,8 +42,6 @@ public class LoginForm extends RelativeLayout {
         signUpParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         signUpParams.setMargins(10, 10, 10, 10);
 
-        this.addView(signUpText, signUpParams);
-
         //first name text
         TextView firstNameText = new TextView(getContext());
         firstNameText.setText("First name:");
@@ -57,9 +55,7 @@ public class LoginForm extends RelativeLayout {
 
         firstNameParams.addRule(RelativeLayout.ALIGN_LEFT);
         firstNameParams.addRule(RelativeLayout.BELOW, signUpText.getId());
-        firstNameParams.setMargins(10, 10, 10,10);
-
-        this.addView(firstNameText, firstNameParams);
+        firstNameParams.setMargins(10, 10, 10, 10);
 
         //last name text
         TextView lastNameText = new TextView(getContext());
@@ -74,9 +70,7 @@ public class LoginForm extends RelativeLayout {
 
         lastNameParams.addRule(RelativeLayout.ALIGN_LEFT);
         lastNameParams.addRule(RelativeLayout.BELOW, firstNameText.getId());
-        lastNameParams.setMargins(10,10,10,10);
-
-        this.addView(lastNameText, lastNameParams);
+        lastNameParams.setMargins(10, 10, 10, 10);
 
         //email address text
         TextView emailText = new TextView(getContext());
@@ -91,9 +85,7 @@ public class LoginForm extends RelativeLayout {
 
         emailParams.addRule(RelativeLayout.ALIGN_LEFT);
         emailParams.addRule(RelativeLayout.BELOW, lastNameText.getId());
-        emailParams.setMargins(10,10,10,10);
-
-        this.addView(emailText, emailParams);
+        emailParams.setMargins(10, 10, 10, 10);
 
         //email address text field
         EditText emailTextField = new EditText(getContext());
@@ -111,9 +103,6 @@ public class LoginForm extends RelativeLayout {
 
         emailFieldParams.addRule(RelativeLayout.BELOW, lastNameText.getId());
         emailFieldParams.addRule(RelativeLayout.RIGHT_OF, emailText.getId());
-        //emailFieldParams.setMargins(10, 10, 10, 10);
-
-        this.addView(emailTextField, emailFieldParams);
 
         //last name text field
         EditText lastNameField = new EditText(getContext());
@@ -131,9 +120,6 @@ public class LoginForm extends RelativeLayout {
         lastNameFieldParams.addRule(RelativeLayout.BELOW, firstNameText.getId());
         lastNameFieldParams.addRule(RelativeLayout.ALIGN_LEFT, emailTextField.getId());
         lastNameFieldParams.addRule(RelativeLayout.RIGHT_OF, lastNameText.getId());
-        //emailFieldParams.setMargins(10, 10, 10, 10);
-
-        this.addView(lastNameField, lastNameFieldParams);
 
         //first name text field
         EditText firstNameField = new EditText(getContext());
@@ -151,9 +137,6 @@ public class LoginForm extends RelativeLayout {
         firstNameFieldParams.addRule(RelativeLayout.BELOW, signUpText.getId());
         firstNameFieldParams.addRule(RelativeLayout.ALIGN_LEFT, emailTextField.getId());
         firstNameFieldParams.addRule(RelativeLayout.RIGHT_OF, lastNameText.getId());
-        //emailFieldParams.setMargins(10, 10, 10, 10);
-
-        this.addView(firstNameField, firstNameFieldParams);
 
         int lastId = emailText.getId();
 
@@ -183,10 +166,7 @@ public class LoginForm extends RelativeLayout {
                         LayoutParams.WRAP_CONTENT);
 
         checkboxParams.addRule(RelativeLayout.BELOW, lastId);
-        //checkboxParams.addRule(RelativeLayout.ALIGN_LEFT);
         checkboxParams.setMargins(10, 10, 0, 0);
-
-        this.addView(checkBox, checkboxParams);
 
         //checkbox text
         TextView checkboxText = new TextView(getContext());
@@ -201,8 +181,6 @@ public class LoginForm extends RelativeLayout {
         checkboxTextParams.addRule(RelativeLayout.BELOW, lastId);
         checkboxTextParams.addRule(RelativeLayout.RIGHT_OF, checkBox.getId());
         checkboxTextParams.setMargins(10, 10, 0, 0);
-
-        this.addView(checkboxText, checkboxTextParams);
 
         //Sign up button
         Button button = new Button(getContext());
@@ -223,7 +201,17 @@ public class LoginForm extends RelativeLayout {
         buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, emailTextField.getId());
         buttonParams.setMargins(0, 20, 0, 0);
 
+        //add components to view
+        this.addView(signUpText, signUpParams);
+        this.addView(firstNameText, firstNameParams);
+        this.addView(lastNameText, lastNameParams);
+        this.addView(lastNameField, lastNameFieldParams);
+        this.addView(emailText, emailParams);
+        this.addView(emailTextField, emailFieldParams);
+        this.addView(checkBox, checkboxParams);
+        this.addView(checkboxText, checkboxTextParams);
         this.addView(button, buttonParams);
+        this.addView(firstNameField, firstNameFieldParams);
 
     }
 }

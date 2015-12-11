@@ -4,10 +4,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTextField">#c7efc5</color>
-    <color name="colorStrengthMeterBackground">#566056</color>
+    <color name="colorStrengthMeterBackground">#748074</color>
+
     <color name="colorCircleRedLit">#fa1313</color>
     <color name="colorCircleYellowLit">#eff20f</color>
     <color name="colorCircleGreenLit">#11bf11</color>
+
+    <color name="colorCircleRedHalfLit">#ca2525</color>
+    <color name="colorCircleYellowHalfLit">#d0d222</color>
+    <color name="colorCircleGreenHalfLit">#1eab1e</color>
+
     <color name="colorCircleRed">#641212</color>
     <color name="colorCircleYellow">#858703</color>
     <color name="colorCircleGreen">#044104</color>
