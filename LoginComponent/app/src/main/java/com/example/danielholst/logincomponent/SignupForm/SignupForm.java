@@ -1,4 +1,4 @@
-package com.example.danielholst.logincomponent.LoginForm;
+package com.example.danielholst.logincomponent.SignupForm;
 
 import android.content.Context;
 import android.text.Editable;
@@ -19,19 +19,36 @@ import java.util.Arrays;
 /**
  * Created by danielholst on 15-12-08.
  */
-public class LoginForm extends RelativeLayout {
+
+
+/**
+ * Class to create a sign up form
+ */
+public class SignupForm extends RelativeLayout {
 
     private boolean includePassword;
     private int fields;
+    final boolean[] formCheckedFields;
+    private PasswordForm passwordForm;
 
-    public LoginForm(Context context, boolean incPass) {
+    public SignupForm(Context context) {
         super(context);
-        includePassword = incPass;
+        includePassword = false;
+        fields = 4;
+        formCheckedFields = new boolean[fields];
 
-        if(incPass)
-            fields = 5;
-        else
-            fields = 4;
+        createForm();
+    }
+
+    public SignupForm(Context context, PasswordForm passform) {
+        super(context);
+
+        includePassword = true;
+        fields = 5;
+
+        formCheckedFields = new boolean[fields];
+
+        passwordForm = passform;
 
         createForm();
     }
@@ -40,7 +57,7 @@ public class LoginForm extends RelativeLayout {
     private void createForm() {
 
         //check to see that all fields are entered before sign up button can be presses
-        final boolean[] formCheckedFields = new boolean[fields];
+        //final boolean[] formCheckedFields = new boolean[fields];
         Arrays.fill(formCheckedFields, false);
 
         //sign up text
@@ -156,10 +173,9 @@ public class LoginForm extends RelativeLayout {
 
         int lastId = emailText.getId();
 
-        PasswordForm passwordForm = null;
-        //if password field is desired
+
         if(includePassword) {
-            passwordForm = new PasswordForm(getContext());
+            //passwordForm = new PasswordForm(getContext());
             passwordForm.setId(11);
             RelativeLayout.LayoutParams passwordFormParams =
                     new RelativeLayout.LayoutParams(
@@ -238,11 +254,10 @@ public class LoginForm extends RelativeLayout {
                 else
                     formCheckedFields[0] = false;
 
-                if (validateCheckedFields(formCheckedFields)) {
+                if (validateCheckedFields()) {
                     button.setClickable(true);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
-                }
-                else {
+                } else {
                     button.setClickable(false);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButton));
                 }
@@ -260,16 +275,15 @@ public class LoginForm extends RelativeLayout {
         lastNameField.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                if(s.length() > 1)
+                if (s.length() > 1)
                     formCheckedFields[1] = true;
                 else
                     formCheckedFields[1] = false;
 
-                if(validateCheckedFields(formCheckedFields)) {
+                if (validateCheckedFields()) {
                     button.setClickable(true);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
-                }
-                else {
+                } else {
                     button.setClickable(false);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButton));
                 }
@@ -287,16 +301,15 @@ public class LoginForm extends RelativeLayout {
         emailTextField.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                if(s.length() > 1)
+                if (s.length() > 1)
                     formCheckedFields[2] = true;
                 else
                     formCheckedFields[2] = false;
 
-                if(validateCheckedFields(formCheckedFields)) {
+                if (validateCheckedFields()) {
                     button.setClickable(true);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
-                }
-                else {
+                } else {
                     button.setClickable(false);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButton));
                 }
@@ -321,11 +334,13 @@ public class LoginForm extends RelativeLayout {
 
                     if(includePassword && finalPasswordForm.getStrength() > 4)
                         formCheckedFields[4] = true;
+                    else
+                        formCheckedFields[4] = false;
                 }
                 if(!isChecked) {
                     formCheckedFields[3] = false;
                 }
-                if(validateCheckedFields(formCheckedFields)) {
+                if(validateCheckedFields()) {
                     button.setClickable(true);
                     button.setBackgroundColor(getResources().getColor(R.color.colorButtonClickable));
                 }
@@ -349,12 +364,18 @@ public class LoginForm extends RelativeLayout {
         });
     }
 
-    public boolean validateCheckedFields(boolean[] checked) {
+    //TODO fix update from when password field is changed in this class
+    public void setPasswordField(boolean b) {
+        formCheckedFields[4] = b;
+        validateCheckedFields();
+    }
+
+    public boolean validateCheckedFields() {
 
         int counter = 0;
 
-        for(int i = 0; i < checked.length; i++) {
-            if(checked[i] == true)
+        for(int i = 0; i < formCheckedFields.length; i++) {
+            if(formCheckedFields[i] == true)
                 counter++;
         }
 

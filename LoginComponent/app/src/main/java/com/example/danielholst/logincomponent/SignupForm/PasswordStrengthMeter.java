@@ -1,4 +1,4 @@
-package com.example.danielholst.logincomponent.LoginForm;
+package com.example.danielholst.logincomponent.SignupForm;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,9 +14,8 @@ public class PasswordStrengthMeter extends View {
 
     private int passwordStrength;
 
-    public PasswordStrengthMeter(Context context, int strength) {
+    public PasswordStrengthMeter(Context context) {
         super(context);
-        passwordStrength = strength;
     }
 
     public void updatePasswordStrength(int strength) {
