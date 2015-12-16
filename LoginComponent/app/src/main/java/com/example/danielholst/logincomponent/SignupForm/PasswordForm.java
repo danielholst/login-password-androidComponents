@@ -23,11 +23,39 @@ public class PasswordForm extends RelativeLayout {
     private int strength = 0;
     private String password;
 
+    public PasswordForm(Context context) {
+        super(context);
+        passwordAlgorithm = new PasswordAlgorithm();
+        passwordStrengthMeter = new PasswordStrengthMeter(context);
+
+        createPasswordForm();
+    }
+
+    public PasswordForm(Context context, PasswordAlgorithm algorithm) {
+        super(context);
+        passwordAlgorithm = algorithm;
+        passwordStrengthMeter = new PasswordStrengthMeter(context);
+
+        createPasswordForm();
+    }
+
+    public PasswordForm(Context context, PasswordStrengthMeter strengthMeter) {
+        super(context);
+        passwordAlgorithm = new PasswordAlgorithm();
+        passwordStrengthMeter = strengthMeter;
+
+        createPasswordForm();
+    }
+
     public PasswordForm(Context context, PasswordStrengthMeter strengthMeter, PasswordAlgorithm algorithm) {
         super(context);
         passwordStrengthMeter = strengthMeter;
         passwordAlgorithm = algorithm;
 
+        createPasswordForm();
+    }
+
+    public void createPasswordForm() {
 
         TextView passwordText = new TextView(getContext());
         passwordText.setText("Password");
@@ -87,6 +115,7 @@ public class PasswordForm extends RelativeLayout {
         passwordStrengthMeterParams.setMargins(10, 30, 0, 10);
 
         this.addView(passwordStrengthMeter, passwordStrengthMeterParams);
+
     }
 
 

@@ -22,12 +22,19 @@ public class MainActivity extends AppCompatActivity {
 
         RelativeLayout myLayout = new RelativeLayout(this);
 
+        //create password strength meter
         passwordStrengthMeter = new PasswordStrengthMeter(this);
 
+        //create password algorithm
         passwordAlgorithm = new PasswordAlgorithm();
 
+        //create password form with password strength meter and password algorithm
         passwordForm = new PasswordForm(this, passwordStrengthMeter, passwordAlgorithm);
 
+        //create sign up form without password field
+        //singupForm = new SignupForm(this);
+
+        //create sign up form with password field
         signupForm = new SignupForm(this, passwordForm);
 
         RelativeLayout.LayoutParams loginParams =
