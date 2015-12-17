@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     PasswordStrengthMeter passwordStrengthMeter;
     PasswordAlgorithm passwordAlgorithm;
 
+    MyPasswordStrengthMeter myPasswordStrengthMeter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +27,17 @@ public class MainActivity extends AppCompatActivity {
         //create password strength meter
         passwordStrengthMeter = new PasswordStrengthMeter(this);
 
+        //create my password strength meter extends from PasswordStrengthMeter
+        myPasswordStrengthMeter = new MyPasswordStrengthMeter(this);
+
         //create password algorithm
         passwordAlgorithm = new PasswordAlgorithm();
 
+        //create password form from default contructor
+        //passwordForm = new PasswordForm(this);
+
         //create password form with password strength meter and password algorithm
-        passwordForm = new PasswordForm(this, passwordStrengthMeter, passwordAlgorithm);
+        passwordForm = new PasswordForm(this, myPasswordStrengthMeter, passwordAlgorithm);
 
         //create sign up form without password field
         //singupForm = new SignupForm(this);

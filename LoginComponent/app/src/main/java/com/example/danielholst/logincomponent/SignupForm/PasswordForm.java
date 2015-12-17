@@ -120,10 +120,12 @@ public class PasswordForm extends RelativeLayout {
 
 
     public int getStrength() {
+
         return strength;
     }
 
     public String getPassword() {
+
         return password;
     }
 }

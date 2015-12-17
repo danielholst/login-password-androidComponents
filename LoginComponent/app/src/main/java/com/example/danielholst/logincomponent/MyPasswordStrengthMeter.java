@@ -1,21 +1,18 @@
-package com.example.danielholst.logincomponent.SignupForm;
+package com.example.danielholst.logincomponent;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.view.View;
 
-import com.example.danielholst.logincomponent.R;
+import com.example.danielholst.logincomponent.SignupForm.PasswordStrengthMeter;
 
 /**
- * Created by danielholst on 15-12-08.
+ * Created by danielholst on 15-12-16.
  */
-public class PasswordStrengthMeter extends View {
+public class MyPasswordStrengthMeter extends PasswordStrengthMeter {
 
     private int passwordStrength;
-
-    public PasswordStrengthMeter(Context context) {
-
+    public MyPasswordStrengthMeter(Context context) {
         super(context);
     }
 
@@ -25,7 +22,6 @@ public class PasswordStrengthMeter extends View {
         invalidate();
     }
 
-    @Override
     protected void onDraw(Canvas canvas) {
 
         int color1 = 1, color2 = 1, color3 = 1;
@@ -73,26 +69,19 @@ public class PasswordStrengthMeter extends View {
         }
 
         //draw circles
-        Paint circle = new Paint();
-        circle.setColor(color1);
-        circle.setStrokeWidth(10);
-        canvas.drawCircle(35, 30, 18, circle);
+        Paint rect1 = new Paint();
+        rect1.setColor(color1);
+        rect1.setStrokeWidth(10);
+        canvas.drawRect(15, 10, 55, 45, rect1);
 
-        Paint circle2 = new Paint();
-        circle2.setColor(color2);
-        circle.setStrokeWidth(10);
-        canvas.drawCircle(35, 75, 18, circle2);
+        Paint rect2 = new Paint();
+        rect2.setColor(color2);
+        rect2.setStrokeWidth(10);
+        canvas.drawRect(15, 55, 55, 95, rect2);
 
-        Paint circle3 = new Paint();
-        circle3.setColor(color3);
-        circle3.setStrokeWidth(10);
-        canvas.drawCircle(35, 120, 18, circle3);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
-
-        //Sets the dimensions for the item.
-        setMeasuredDimension(200, 200);
+        Paint rect3 = new Paint();
+        rect3.setColor(color3);
+        rect3.setStrokeWidth(10);
+        canvas.drawRect(15, 105, 55, 140, rect3);
     }
 }

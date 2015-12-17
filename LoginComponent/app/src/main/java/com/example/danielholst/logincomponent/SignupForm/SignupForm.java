@@ -37,10 +37,12 @@ public class SignupForm extends RelativeLayout {
         fields = 4;
         formCheckedFields = new boolean[fields];
 
+        passwordForm = new PasswordForm(context);
+
         createForm();
     }
 
-    public SignupForm(Context context, PasswordForm passform) {
+    public SignupForm(Context context, PasswordForm passForm) {
         super(context);
 
         includePassword = true;
@@ -48,7 +50,7 @@ public class SignupForm extends RelativeLayout {
 
         formCheckedFields = new boolean[fields];
 
-        passwordForm = passform;
+        passwordForm = passForm;
 
         createForm();
     }
