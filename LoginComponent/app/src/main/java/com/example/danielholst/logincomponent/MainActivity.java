@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         signupForm.createPasswordForm(passwordForm);
 
+        signupForm.createCheckbox("I accept the terms of use");
         RelativeLayout.LayoutParams loginParams =
                 new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT,

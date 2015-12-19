@@ -133,9 +133,42 @@ public class SignupForm extends RelativeLayout {
         this.addView(textField, textFieldParams);
     }
 
+    public void createCheckbox(String text) {
+
+        CheckBox checkBox = new CheckBox(getContext());
+        checkBox.setId(20 + nrOfFields);
+
+        RelativeLayout.LayoutParams checkboxParams =
+                new RelativeLayout.LayoutParams(
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT);
+
+        checkboxParams.addRule(RelativeLayout.BELOW, 19 + nrOfFields);
+        checkboxParams.setMargins(10, 10, 0, 0);
+        nrOfFields++;
+
+        //checkbox text
+        TextView checkboxText = new TextView(getContext());
+        checkboxText.setText(text);
+        checkboxText.setTextSize(20);
+
+        RelativeLayout.LayoutParams checkboxTextParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT);
+
+        checkboxTextParams.addRule(RelativeLayout.BELOW, 18 + nrOfFields);
+        checkboxTextParams.addRule(RelativeLayout.RIGHT_OF, checkBox.getId());
+        checkboxTextParams.setMargins(10, 10, 0, 0);
+
+        this.addView(checkBox, checkboxParams);
+        this.addView(checkboxText, checkboxTextParams);
+    }
+
+
     public void createPasswordForm(PasswordForm form) {
         passwordForm = form;
-        passwordForm.setId(2);
+        passwordForm.setId(20 + nrOfFields);
         RelativeLayout.LayoutParams passwordFormParams =
                 new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT,
