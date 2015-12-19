@@ -28,19 +28,13 @@ public class MainActivity extends AppCompatActivity {
         passwordStrengthMeter = new PasswordStrengthMeter(this);
 
         //create my password strength meter extends from PasswordStrengthMeter
-        myPasswordStrengthMeter = new MyPasswordStrengthMeter(this);
+        //myPasswordStrengthMeter = new MyPasswordStrengthMeter(this);
 
         //create password algorithm
         passwordAlgorithm = new PasswordAlgorithm();
 
-        //create password form from default contructor
-        //passwordForm = new PasswordForm(this);
-
         //create password form with password strength meter and password algorithm
-        passwordForm = new PasswordForm(this, myPasswordStrengthMeter, passwordAlgorithm);
-
-        //create sign up form without password field
-        //singupForm = new SignupForm(this);
+        passwordForm = new PasswordForm(this, passwordStrengthMeter, passwordAlgorithm);
 
         //create sign up form with password field
         signupForm = new SignupForm(this);
@@ -56,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         signupForm.createPasswordForm(passwordForm);
 
         signupForm.createCheckbox("I accept the terms of use");
+
+        signupForm.createButton("Sign up");
+
         RelativeLayout.LayoutParams loginParams =
                 new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT,

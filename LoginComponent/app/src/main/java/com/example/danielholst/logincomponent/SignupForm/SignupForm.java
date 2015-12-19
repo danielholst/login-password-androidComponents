@@ -165,6 +165,29 @@ public class SignupForm extends RelativeLayout {
         this.addView(checkboxText, checkboxTextParams);
     }
 
+    public void createButton(String text) {
+
+        final Button button = new Button(getContext());
+        button.setText(text);
+        button.setTextSize(30);
+        button.setWidth(350);
+        button.setBackgroundColor(getResources().getColor(R.color.colorButton));
+
+        //set clickable when all fields are entered
+        button.setClickable(false);
+
+        RelativeLayout.LayoutParams buttonParams =
+                new RelativeLayout.LayoutParams(
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT);
+
+        buttonParams.addRule(RelativeLayout.BELOW, 19 + nrOfFields);
+        buttonParams.addRule(RelativeLayout.ALIGN_LEFT);
+        buttonParams.setMargins(0, 20, 0, 0);
+
+        this.addView(button, buttonParams);
+    }
+
 
     public void createPasswordForm(PasswordForm form) {
         passwordForm = form;
