@@ -30,29 +30,122 @@ public class SignupForm extends RelativeLayout {
     private int fields;
     final boolean[] formCheckedFields;
     private PasswordForm passwordForm;
+    private int nrOfFields;
 
     public SignupForm(Context context) {
         super(context);
         includePassword = false;
         fields = 4;
         formCheckedFields = new boolean[fields];
+        nrOfFields = 0;
 
-        passwordForm = new PasswordForm(context);
+        //passwordForm = new PasswordForm(context);
 
-        createForm();
+        //createForm();
     }
 
+    /*
     public SignupForm(Context context, PasswordForm passForm) {
         super(context);
 
         includePassword = true;
         fields = 5;
-
+        nrOfFields = 0;
         formCheckedFields = new boolean[fields];
 
         passwordForm = passForm;
 
-        createForm();
+        //createForm();
+    }
+*/
+
+    public void createHeaderText(String text) {
+
+        TextView headerText = new TextView(getContext());
+        headerText.setText(text);
+        headerText.setId(1);
+        headerText.setTextSize(40);
+
+        RelativeLayout.LayoutParams headerParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        headerParams.addRule(RelativeLayout.ALIGN_LEFT);
+        headerParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        headerParams.setMargins(10, 10, 10, 10);
+
+        this.addView(headerText, headerParams);
+    }
+
+    public void createField(String fieldText) {
+
+        TextView text = new TextView(getContext());
+        text.setText(fieldText);
+        text.setId(20 + nrOfFields);
+        text.setTextSize(20);
+
+        nrOfFields++;
+
+        RelativeLayout.LayoutParams textParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        if(nrOfFields == 1) {
+            textParams.addRule(RelativeLayout.ALIGN_LEFT);
+            textParams.addRule(RelativeLayout.BELOW, 1 );
+            textParams.setMargins(10, 10, 10, 10);
+        }
+        else {
+            textParams.addRule(RelativeLayout.ALIGN_LEFT);
+            textParams.addRule(RelativeLayout.BELOW, (18 + nrOfFields) );
+            textParams.setMargins(10, 30, 10, 10);
+        }
+
+        this.addView(text, textParams);
+
+        EditText textField = new EditText(getContext());
+        textField.setId(20 + nrOfFields);
+        textField.setWidth(200);
+        textField.setBackgroundColor(getResources().getColor(R.color.colorTextField));
+        textField.setTextSize(20);
+
+        nrOfFields++;
+        System.out.println(nrOfFields);
+
+        RelativeLayout.LayoutParams textFieldParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        if(nrOfFields == 2) {
+            textFieldParams.addRule(RelativeLayout.RIGHT_OF, text.getId());
+            textFieldParams.addRule(RelativeLayout.BELOW, 1 );
+            textFieldParams.setMargins(10, 0, 10, 10);
+        }
+        else {
+            textFieldParams.addRule(RelativeLayout.RIGHT_OF, text.getId());
+            textFieldParams.addRule(RelativeLayout.BELOW, (17 + nrOfFields) );
+            textFieldParams.setMargins(10, 20, 10, 10);
+        }
+
+        this.addView(textField, textFieldParams);
+    }
+
+    public void createPasswordForm(PasswordForm form) {
+        passwordForm = form;
+        passwordForm.setId(2);
+        RelativeLayout.LayoutParams passwordFormParams =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        200);
+
+        passwordFormParams.addRule(RelativeLayout.BELOW, 19 + nrOfFields);
+
+        nrOfFields++;
+
+        this.addView(passwordForm, passwordFormParams);
     }
 
     //create all fields in the login form

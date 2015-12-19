@@ -43,7 +43,17 @@ public class MainActivity extends AppCompatActivity {
         //singupForm = new SignupForm(this);
 
         //create sign up form with password field
-        signupForm = new SignupForm(this, passwordForm);
+        signupForm = new SignupForm(this);
+
+        signupForm.createHeaderText("Sign up");
+
+        signupForm.createField("First name:");
+
+        signupForm.createField("Last name:" );
+
+        signupForm.createField("Email address:");
+
+        signupForm.createPasswordForm(passwordForm);
 
         RelativeLayout.LayoutParams loginParams =
                 new RelativeLayout.LayoutParams(
