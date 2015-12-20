@@ -3,17 +3,23 @@ package com.example.danielholst.logincomponent.SignupForm;
 import java.util.Arrays;
 
 /**
- * Created by danielholst on 15-12-15.
+ * Class to create an algorithm for a password
  */
+
 public class PasswordAlgorithm {
 
     Boolean[] checkedConditions;
 
-    public PasswordAlgorithm() {}
-
-    public int getStrength(String password) {
+    /** default constructor */
+    public PasswordAlgorithm() {
 
         checkedConditions = new Boolean[6];
+        Arrays.fill(checkedConditions, false);
+    }
+
+    /** get strength of the password */
+    public int getStrength(String password) {
+
         Arrays.fill(checkedConditions, false);
 
         //if more then 6 letters in password

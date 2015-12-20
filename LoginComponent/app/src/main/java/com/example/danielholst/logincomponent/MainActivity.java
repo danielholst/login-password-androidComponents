@@ -9,6 +9,11 @@ import com.example.danielholst.logincomponent.SignupForm.PasswordForm;
 import com.example.danielholst.logincomponent.SignupForm.SignupForm;
 import com.example.danielholst.logincomponent.SignupForm.PasswordStrengthMeter;
 
+
+/*
+* Test program to test the components SignupForm, PasswordForm, PasswordStrengthMeter and PasswordAlgorithm
+*/
+
 public class MainActivity extends AppCompatActivity {
 
     SignupForm signupForm;
@@ -16,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     PasswordStrengthMeter passwordStrengthMeter;
     PasswordAlgorithm passwordAlgorithm;
 
-    MyPasswordStrengthMeter myPasswordStrengthMeter;
+    //MyPasswordStrengthMeter myPasswordStrengthMeter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //create sign up form with password field
         signupForm = new SignupForm(this);
 
+        //Add different fields
         signupForm.createHeaderText("Sign up");
 
         signupForm.createField("First name:");

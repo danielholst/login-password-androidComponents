@@ -1,29 +1,19 @@
 package com.example.danielholst.logincomponent.SignupForm;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.danielholst.logincomponent.R;
 
-import java.util.Arrays;
-
-
-/**
- * Created by danielholst on 15-12-08.
- */
-
 
 /**
  * Class to create a sign up form
  */
+
 public class SignupForm extends RelativeLayout {
 
     private boolean includePassword;
@@ -32,6 +22,7 @@ public class SignupForm extends RelativeLayout {
     private PasswordForm passwordForm;
     private int nrOfFields;
 
+    /** Constructor */
     public SignupForm(Context context) {
         super(context);
         includePassword = false;
@@ -59,6 +50,7 @@ public class SignupForm extends RelativeLayout {
     }
 */
 
+    /** Creates a header text in form */
     public void createHeaderText(String text) {
 
         TextView headerText = new TextView(getContext());
@@ -78,6 +70,7 @@ public class SignupForm extends RelativeLayout {
         this.addView(headerText, headerParams);
     }
 
+    /** creates a text and field in form */
     public void createField(String fieldText) {
 
         TextView text = new TextView(getContext());
@@ -133,6 +126,7 @@ public class SignupForm extends RelativeLayout {
         this.addView(textField, textFieldParams);
     }
 
+    /** creates a text and checkbox in form */
     public void createCheckbox(String text) {
 
         CheckBox checkBox = new CheckBox(getContext());
@@ -165,6 +159,7 @@ public class SignupForm extends RelativeLayout {
         this.addView(checkboxText, checkboxTextParams);
     }
 
+    /** creates a button in form */
     public void createButton(String text) {
 
         final Button button = new Button(getContext());
@@ -188,7 +183,7 @@ public class SignupForm extends RelativeLayout {
         this.addView(button, buttonParams);
     }
 
-
+    /** adds a password form */
     public void createPasswordForm(PasswordForm form) {
         passwordForm = form;
         passwordForm.setId(20 + nrOfFields);
@@ -204,6 +199,7 @@ public class SignupForm extends RelativeLayout {
         this.addView(passwordForm, passwordFormParams);
     }
 
+    /*
     //create all fields in the login form
     private void createForm() {
 
@@ -514,7 +510,8 @@ public class SignupForm extends RelativeLayout {
             }
         });
     }
-
+    */
+/*
     //TODO fix update from when password field is changed in this class
     public void setPasswordField(boolean b) {
         formCheckedFields[4] = b;
@@ -530,9 +527,7 @@ public class SignupForm extends RelativeLayout {
                 counter++;
         }
 
-        if(counter == 5)
-            return true;
-        else
-            return false;
+        return counter == 5;
     }
+    */
 }

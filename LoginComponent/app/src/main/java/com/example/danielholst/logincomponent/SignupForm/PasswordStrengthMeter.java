@@ -8,17 +8,20 @@ import android.view.View;
 import com.example.danielholst.logincomponent.R;
 
 /**
- * Created by danielholst on 15-12-08.
+ * Class to create the gui password strength meter
  */
+
 public class PasswordStrengthMeter extends View {
 
     private int passwordStrength;
 
+    /** default constructor */
     public PasswordStrengthMeter(Context context) {
 
         super(context);
     }
 
+    /** updates the strength of the password */
     public void updatePasswordStrength(int strength) {
         passwordStrength = strength;
         System.out.println(passwordStrength);
@@ -26,6 +29,7 @@ public class PasswordStrengthMeter extends View {
     }
 
     @Override
+    /** draw the gui for the strength meter */
     protected void onDraw(Canvas canvas) {
 
         int color1 = 1, color2 = 1, color3 = 1;
@@ -90,9 +94,9 @@ public class PasswordStrengthMeter extends View {
     }
 
     @Override
+    /** Sets the dimensions for the item. */
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
 
-        //Sets the dimensions for the item.
         setMeasuredDimension(200, 200);
     }
 }

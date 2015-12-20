@@ -4,17 +4,14 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.danielholst.logincomponent.R;
 
-import java.util.Arrays;
-
 /**
- * Created by danielholst on 15-12-08.
+ * Class to create a password form
  */
 public class PasswordForm extends RelativeLayout {
 
@@ -23,6 +20,7 @@ public class PasswordForm extends RelativeLayout {
     private int strength = 0;
     private String password;
 
+    /** default constructor */
     public PasswordForm(Context context) {
         super(context);
         passwordAlgorithm = new PasswordAlgorithm();
@@ -31,6 +29,7 @@ public class PasswordForm extends RelativeLayout {
         createPasswordForm();
     }
 
+    /** constructor with specified algorithm */
     public PasswordForm(Context context, PasswordAlgorithm algorithm) {
         super(context);
         passwordAlgorithm = algorithm;
@@ -39,6 +38,7 @@ public class PasswordForm extends RelativeLayout {
         createPasswordForm();
     }
 
+    /** constructor with specified gui meter */
     public PasswordForm(Context context, PasswordStrengthMeter strengthMeter) {
         super(context);
         passwordAlgorithm = new PasswordAlgorithm();
@@ -47,6 +47,7 @@ public class PasswordForm extends RelativeLayout {
         createPasswordForm();
     }
 
+    /** constructor with specified gui meter and algorithm */
     public PasswordForm(Context context, PasswordStrengthMeter strengthMeter, PasswordAlgorithm algorithm) {
         super(context);
         passwordStrengthMeter = strengthMeter;
@@ -55,6 +56,7 @@ public class PasswordForm extends RelativeLayout {
         createPasswordForm();
     }
 
+    /** function to create the form */
     public void createPasswordForm() {
 
         TextView passwordText = new TextView(getContext());
@@ -118,12 +120,13 @@ public class PasswordForm extends RelativeLayout {
 
     }
 
-
+    /** get password strength */
     public int getStrength() {
 
         return strength;
     }
 
+    /** get password */
     public String getPassword() {
 
         return password;

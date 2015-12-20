@@ -6,7 +6,7 @@ package com.example.danielholst.logincomponent;
 import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.example.danielholst.logincomponent.SignupForm.LoginForm;
+import com.example.danielholst.logincomponent.SignupForm.SignupForm;
 
 import org.junit.Before;
 
