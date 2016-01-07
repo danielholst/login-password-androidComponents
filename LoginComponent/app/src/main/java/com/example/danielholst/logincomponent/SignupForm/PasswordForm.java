@@ -13,6 +13,7 @@ import com.example.danielholst.logincomponent.R;
 /**
  * Class to create a password form
  */
+
 public class PasswordForm extends RelativeLayout {
 
     private PasswordStrengthMeter passwordStrengthMeter;

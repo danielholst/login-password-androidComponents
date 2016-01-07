@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
     PasswordForm passwordForm;
     PasswordStrengthMeter passwordStrengthMeter;
     PasswordAlgorithm passwordAlgorithm;
-
-    //MyPasswordStrengthMeter myPasswordStrengthMeter;
+    MyPasswordStrengthMeter myPasswordStrengthMeter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
