@@ -1,4 +1,4 @@
-package com.example.danielholst.logincomponent.SignupForm;
+package com.example.danielholst.logincomponent.PasswordForm;
 
 import java.util.Arrays;
 

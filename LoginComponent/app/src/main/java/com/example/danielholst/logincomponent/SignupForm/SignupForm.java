@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.danielholst.logincomponent.PasswordForm.PasswordForm;
 import com.example.danielholst.logincomponent.R;
 
 

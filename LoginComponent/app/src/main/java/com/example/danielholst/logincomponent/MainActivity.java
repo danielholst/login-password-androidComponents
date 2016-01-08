@@ -4,10 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-import com.example.danielholst.logincomponent.SignupForm.PasswordAlgorithm;
-import com.example.danielholst.logincomponent.SignupForm.PasswordForm;
+import com.example.danielholst.logincomponent.PasswordForm.PasswordAlgorithm;
+import com.example.danielholst.logincomponent.PasswordForm.PasswordForm;
 import com.example.danielholst.logincomponent.SignupForm.SignupForm;
-import com.example.danielholst.logincomponent.SignupForm.PasswordStrengthMeter;
+import com.example.danielholst.logincomponent.PasswordForm.PasswordStrengthMeter;
 
 
 /*

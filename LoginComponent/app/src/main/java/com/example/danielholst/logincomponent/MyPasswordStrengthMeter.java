@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.danielholst.logincomponent.SignupForm.PasswordStrengthMeter;
+import com.example.danielholst.logincomponent.PasswordForm.PasswordStrengthMeter;
 
 /**
  * Created by danielholst on 15-12-16.
