@@ -16,6 +16,7 @@ import com.example.danielholst.logincomponent.R;
 
 public class PasswordForm extends RelativeLayout {
 
+    private TextView passwordText;
     private PasswordStrengthMeter passwordStrengthMeter;
     private PasswordAlgorithm passwordAlgorithm;
     private int strength = 0;
@@ -60,7 +61,7 @@ public class PasswordForm extends RelativeLayout {
     /** function to create the form */
     public void createPasswordForm() {
 
-        TextView passwordText = new TextView(getContext());
+        passwordText = new TextView(getContext());
         passwordText.setText("Password");
         passwordText.setId(8);
         passwordText.setTextSize(25);
@@ -131,5 +132,9 @@ public class PasswordForm extends RelativeLayout {
     public String getPassword() {
 
         return password;
+    }
+
+    public void setHeaderText(String text) {
+        passwordText.setText(text);
     }
 }

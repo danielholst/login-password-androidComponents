@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         //create password form with password strength meter and password algorithm
         passwordForm = new PasswordForm(this, passwordStrengthMeter, passwordAlgorithm);
 
+        //change header text for password form
+        passwordForm.setHeaderText("lösenord");
+
         //create sign up form with password field
         signupForm = new SignupForm(this);
 
