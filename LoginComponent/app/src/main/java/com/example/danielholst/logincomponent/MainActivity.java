@@ -10,9 +10,28 @@ import com.example.danielholst.logincomponent.SignupForm.SignupForm;
 import com.example.danielholst.logincomponent.PasswordForm.PasswordStrengthMeter;
 
 
-/*
-* Test program to test the components SignupForm, PasswordForm, PasswordStrengthMeter and PasswordAlgorithm
+/**
+* Test program to test the component SignupForm
+ *
+ * This component let you create your own sign up form with the desired fields
+ *
+ * To use it you simple create a default signupForm and then add a header using createHeaderText
+ *
+ * Then you add the desired fields, checkboxes and buttons using the functions createField, createCheckbox and createButton
+ *
 */
+
+/**
+ * Test program to test the components passwordForm, passwordStrengthMeter and passwordAlgorithm
+ *
+ * This component creates a passwordForm with a strengthMeter
+ *
+ * First create the desired passwordStrengthMeter and passwordAlgorithm
+ *
+ * Then create the passwordForm by passing these as arguments
+ *
+ */
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,17 +41,30 @@ public class MainActivity extends AppCompatActivity {
     PasswordAlgorithm passwordAlgorithm;
     MyPasswordStrengthMeter myPasswordStrengthMeter;
 
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         RelativeLayout myLayout = new RelativeLayout(this);
 
+        //create sign up form with password field
+        signupForm = new SignupForm(this);
+
+        //Add different fields
+        signupForm.createHeaderText("Sign up");
+
+        signupForm.createField("First name:", false);
+
+        signupForm.createField("Last name:", false);
+
+        signupForm.createField("Email address:", false);
+
+        signupForm.createField("password", true);
+
+        /*
         //create password strength meter
         passwordStrengthMeter = new PasswordStrengthMeter(this);
-
-        //create my password strength meter extends from PasswordStrengthMeter
-        //myPasswordStrengthMeter = new MyPasswordStrengthMeter(this);
 
         //create password algorithm
         passwordAlgorithm = new PasswordAlgorithm();
@@ -41,21 +73,11 @@ public class MainActivity extends AppCompatActivity {
         passwordForm = new PasswordForm(this, passwordStrengthMeter, passwordAlgorithm);
 
         //change header text for password form
-        passwordForm.setHeaderText("lösenord");
-
-        //create sign up form with password field
-        signupForm = new SignupForm(this);
-
-        //Add different fields
-        signupForm.createHeaderText("Sign up");
-
-        signupForm.createField("First name:");
-
-        signupForm.createField("Last name:" );
-
-        signupForm.createField("Email address:");
+        passwordForm.setHeaderText("Password");
 
         signupForm.createPasswordForm(passwordForm);
+
+
 
         signupForm.createCheckbox("I accept the terms of use");
 
@@ -68,6 +90,35 @@ public class MainActivity extends AppCompatActivity {
 
         myLayout.addView(signupForm, loginParams);
 
+
         setContentView(myLayout);
     }
+
+*/
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        RelativeLayout myLayout = new RelativeLayout(this);
+
+        //create password strength meter
+        passwordStrengthMeter = new PasswordStrengthMeter(this);
+
+        //create password algorithm
+        passwordAlgorithm = new PasswordAlgorithm();
+
+        //create password form with password strength meter and password algorithm
+        passwordForm = new PasswordForm(this, passwordStrengthMeter, passwordAlgorithm);
+
+        //change header text for password form
+        passwordForm.setHeaderText("Password");
+
+        myLayout.addView(passwordForm);
+
+        setContentView(myLayout);
+    }
+    
 }
