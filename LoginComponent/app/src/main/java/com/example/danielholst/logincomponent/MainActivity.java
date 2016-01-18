@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 
 import com.example.danielholst.logincomponent.PasswordForm.PasswordAlgorithm;
 import com.example.danielholst.logincomponent.PasswordForm.PasswordForm;
+import com.example.danielholst.logincomponent.PasswordForm.PasswordInterface;
 import com.example.danielholst.logincomponent.SignupForm.SignupForm;
 import com.example.danielholst.logincomponent.PasswordForm.PasswordStrengthMeter;
 
@@ -116,9 +117,19 @@ public class MainActivity extends AppCompatActivity {
         //change header text for password form
         passwordForm.setHeaderText("Password");
 
+        //get feedback when password is strong enough
+        passwordForm.setPasswordInterface(new PasswordInterface() {
+            @Override
+            public void passwordUpdate(int level) {
+
+                if(level > 4)
+                    System.out.println("password is strong enough");
+            }
+        });
+
         myLayout.addView(passwordForm);
 
         setContentView(myLayout);
     }
-    
+
 }
