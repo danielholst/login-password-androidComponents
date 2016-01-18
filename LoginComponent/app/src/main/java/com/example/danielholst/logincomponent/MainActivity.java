@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     PasswordAlgorithm passwordAlgorithm;
     MyPasswordStrengthMeter myPasswordStrengthMeter;
 
-    /*
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         signupForm.createField("Email address:", false);
 
-        signupForm.createField("password", true);
+        signupForm.createField("password:", true);
 
         /*
         //create password strength meter
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         signupForm.createPasswordForm(passwordForm);
 
-
+*/
 
         signupForm.createCheckbox("I accept the terms of use");
 
@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(myLayout);
     }
 
-*/
 
 
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,5 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(myLayout);
     }
+    */
 
 }

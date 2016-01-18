@@ -5,10 +5,12 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,7 +26,7 @@ import java.util.List;
  * Class to create a sign up form
  */
 
-public class SignupForm extends RelativeLayout {
+public class SignupForm extends LinearLayout {
 
     private boolean includePassword;
     private int fields;
@@ -53,20 +55,14 @@ public class SignupForm extends RelativeLayout {
         headerText.setId(1);
         headerText.setTextSize(40);
 
-        RelativeLayout.LayoutParams headerParams =
-                new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+        setOrientation(VERTICAL);
 
-        headerParams.addRule(RelativeLayout.ALIGN_LEFT);
-        headerParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-        headerParams.setMargins(10, 10, 10, 10);
-
-        this.addView(headerText, headerParams);
+        this.addView(headerText);
     }
 
     /** creates a text and field in form */
     public void createField(String fieldText, boolean passwordField) {
+
 
         TextView text = new TextView(getContext());
         text.setText(fieldText);
@@ -76,23 +72,7 @@ public class SignupForm extends RelativeLayout {
         fieldValues[text.getId() - 20] = fieldText;
         nrOfFields++;
 
-        RelativeLayout.LayoutParams textParams =
-                new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        if(nrOfFields == 1) {
-            textParams.addRule(RelativeLayout.ALIGN_LEFT);
-            textParams.addRule(RelativeLayout.BELOW, 1 );
-            textParams.setMargins(10, 10, 10, 10);
-        }
-        else {
-            textParams.addRule(RelativeLayout.ALIGN_LEFT);
-            textParams.addRule(RelativeLayout.BELOW, (18 + nrOfFields) );
-            textParams.setMargins(10, 30, 10, 10);
-        }
-
-        this.addView(text, textParams);
+        this.addView(text);
 
         final EditText textField = new EditText(getContext());
 
@@ -103,25 +83,6 @@ public class SignupForm extends RelativeLayout {
         textField.setWidth(200);
         textField.setBackgroundColor(getResources().getColor(R.color.colorTextField));
         textField.setTextSize(20);
-
-        nrOfFields++;
-        System.out.println(nrOfFields);
-
-        RelativeLayout.LayoutParams textFieldParams =
-                new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        if(nrOfFields == 2) {
-            textFieldParams.addRule(RelativeLayout.RIGHT_OF, text.getId());
-            textFieldParams.addRule(RelativeLayout.BELOW, 1 );
-            textFieldParams.setMargins(10, 0, 10, 10);
-        }
-        else {
-            textFieldParams.addRule(RelativeLayout.RIGHT_OF, text.getId());
-            textFieldParams.addRule(RelativeLayout.BELOW, (17 + nrOfFields) );
-            textFieldParams.setMargins(10, 20, 10, 10);
-        }
 
         textField.addTextChangedListener(new TextWatcher() {
 
@@ -140,40 +101,18 @@ public class SignupForm extends RelativeLayout {
             }
         });
 
-        this.addView(textField, textFieldParams);
+        this.addView(textField);
     }
 
     /** creates a text and checkbox in form */
     public void createCheckbox(String text) {
 
+        setOrientation(VERTICAL);
+
         final CheckBox checkBox = new CheckBox(getContext());
+        checkBox.setText(text);
         checkBox.setId(20 + nrOfFields);
         fieldValues[checkBox.getId() - 20] = text;
-
-        RelativeLayout.LayoutParams checkboxParams =
-                new RelativeLayout.LayoutParams(
-                        LayoutParams.WRAP_CONTENT,
-                        LayoutParams.WRAP_CONTENT);
-
-        checkboxParams.addRule(RelativeLayout.BELOW, 19 + nrOfFields);
-        checkboxParams.setMargins(10, 10, 0, 0);
-        nrOfFields++;
-
-        //checkbox text
-        TextView checkboxText = new TextView(getContext());
-        checkboxText.setText(text);
-        checkboxText.setId(20 + nrOfFields);
-        checkboxText.setTextSize(20);
-        nrOfFields++;
-
-        RelativeLayout.LayoutParams checkboxTextParams =
-                new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT);
-
-        checkboxTextParams.addRule(RelativeLayout.BELOW, 17 + nrOfFields);
-        checkboxTextParams.addRule(RelativeLayout.RIGHT_OF, checkBox.getId());
-        checkboxTextParams.setMargins(10, 10, 0, 0);
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -189,8 +128,7 @@ public class SignupForm extends RelativeLayout {
 
         });
 
-        this.addView(checkBox, checkboxParams);
-        this.addView(checkboxText, checkboxTextParams);
+        this.addView(checkBox);
     }
 
     /** creates a button in form */
@@ -202,16 +140,6 @@ public class SignupForm extends RelativeLayout {
         button.setWidth(350);
         button.setBackgroundColor(getResources().getColor(R.color.colorButton));
         button.setClickable(true);
-
-        RelativeLayout.LayoutParams buttonParams =
-                new RelativeLayout.LayoutParams(
-                        LayoutParams.WRAP_CONTENT,
-                        LayoutParams.WRAP_CONTENT);
-
-        buttonParams.addRule(RelativeLayout.BELOW, 18 + nrOfFields);
-        buttonParams.addRule(RelativeLayout.ALIGN_LEFT);
-        buttonParams.setMargins(0, 20, 0, 0);
-
 
         button.setOnClickListener(new OnClickListener() {
         @Override
@@ -226,7 +154,7 @@ public class SignupForm extends RelativeLayout {
             }
         });
 
-        this.addView(button, buttonParams);
+        this.addView(button);
     }
 
     /** adds a password form */
